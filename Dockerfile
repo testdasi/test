@@ -5,8 +5,8 @@ RUN chmod +x /entrypoint.sh
 
 RUN apt-get -y update \
     && apt-get -y dist-upgrade \
-    && apt-get -y install sudo bash nano-tiny \
-#    && apt-get -y install sudo bash nano \
+#    && apt-get -y install sudo bash nano-tiny \
+    && apt-get -y install sudo bash nano \
     && apt-get autoremove \
     && apt-get auto-clean \
     && apt-get clean \
