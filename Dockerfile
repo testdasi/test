@@ -11,4 +11,4 @@ RUN chmod +x /entrypoint.sh
 #    && apt-get clean \
 #    && rm -fr /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash","/entrypoint.sh"]
