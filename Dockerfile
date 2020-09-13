@@ -1,12 +1,8 @@
+FROM scratch
+ARG TAG=latest
+ENV TAG "${TAG}"
+RUN echo "$(date "+%d.%m.%Y %T") scratch ${TAG}" >> /build_date.info
+
 FROM pihole/pihole:master-buster
 
-# Install basic packages
-RUN apt-get -y update \
-    && apt-get -y dist-upgrade \
-    && apt-get -y install sudo bash nano \
-    && apt-get -y autoremove \
-    && apt-get -y autoclean \
-    && apt-get -y clean \
-    && rm -fr /tmp/* /var/tmp/* /var/lib/apt/lists/*
-
-RUN echo "$(date "+%d.%m.%Y %T")" >> /build_date.info
+RUN echo "$(date "+%d.%m.%Y %T") pihole ${TAG}" >> /build_date.info
