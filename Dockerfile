@@ -1,10 +1,12 @@
-FROM testdasi/debian-buster-slim-base:latest-amd64
+FROM pihole/pihole:master-buster
 
-COPY ./entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+# Install basic packages
+RUN apt-get -y update \
+    && apt-get -y dist-upgrade \
+    && apt-get -y install sudo bash nano \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean \
+    && apt-get -y clean \
+    && rm -fr /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
-RUN sed -i 's|main|main contrib non-free|g' /etc/apt/sources.list \
-    && apt-get -y update \
-    && apt-get -y install wget
-
-ENTRYPOINT ["/bin/bash","/entrypoint.sh"]
+RUN echo "$(date "+%d.%m.%Y %T")" >> /build_date.info
