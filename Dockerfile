@@ -1,3 +1,4 @@
+ARG TARGETPLATFORM ${BUILDPLATFORM}
 ARG TAG=latest
 FROM pihole/pihole:master-buster
 ARG TAG
