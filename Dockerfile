@@ -1,13 +1,28 @@
-ARG FRM='testdasi/debian-buster-slim-base'
-ARG TAG='latest-mono-amd64'
+ARG FRM='testdasi/ubuntu-mono'
+ARG TAG='latest'
 
 FROM ${FRM}:${TAG}
 ARG FRM
 ARG TAG
 
-ADD scripts /
-RUN chmod +x /*.sh
+## install static codes ##
+RUN mkdir -p /temp \
+    && cd /temp \
+    && curl -L "https://github.com/testdasi/static-ubuntu/archive/main.zip" -o /temp/temp.zip \
+    && unzip /temp/temp.zip \
+    && rm -f /temp/temp.zip \
+    && mv /temp/static-ubuntu-main /testdasi \
+    && rm -Rf /testdasi/deprecated
 
-ENTRYPOINT ["/entrypoint.sh"]
+## execute execute execute ##
+RUN /bin/bash /testdasi/scripts-install/install-openvpn-the-one-docker-base.sh
 
-RUN echo "$(date "+%d.%m.%Y %T") tag ${TAG}, target platform ${TARGETPLATFORM}, build platform ${BUILDPLATFORM}"
+## build note ##
+RUN echo "$(date "+%d.%m.%Y %T") Built from ${FRM} with tag ${TAG}" >> /build_date.info
+
+## debug mode (comment to disable) ##
+RUN cp /testdasi/scripts-debug/entrypoint.sh / && chmod +x /*.sh
+ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
+
+## Final clean up ##
+# RUN rm -Rf /testdasi
