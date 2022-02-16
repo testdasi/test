@@ -7,7 +7,7 @@ ARG FRM
 ARG TAG
 
 ## build note ##
-RUN echo "$(date "+%d.%m.%Y %T") Built from ${FRM} with tag ${TAG}" >> /build.info
+RUN echo "$(date "+%d.%m.%Y %T") Built from ${FRM}:${TAG}" >> /build.info
 
 ## install static codes ##
 RUN rm -Rf /testdasi \
@@ -20,7 +20,7 @@ RUN rm -Rf /testdasi \
     && rm -Rf /testdasi/deprecated
 
 ## execute execute execute ##
-RUN /bin/bash /testdasi/scripts-install/install-openvpn-the-one-docker-base.sh
+# RUN /bin/bash /testdasi/scripts-install/install-openvpn-the-one-docker-base.sh
 
 ## debug mode (comment to disable) ##
 RUN cp /testdasi/scripts-debug/* / && chmod +x /*.sh
