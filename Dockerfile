@@ -6,7 +6,8 @@ ARG FRM
 ARG TAG
 
 ## install static codes ##
-RUN mkdir -p /temp \
+RUN rm -Rf /testdasi \
+    && mkdir -p /temp \
     && cd /temp \
     && curl -L "https://github.com/testdasi/static-ubuntu/archive/main.zip" -o /temp/temp.zip \
     && unzip /temp/temp.zip \
