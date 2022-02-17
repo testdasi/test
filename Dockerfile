@@ -20,11 +20,12 @@ RUN rm -Rf /testdasi \
     && rm -Rf /testdasi/deprecated
 
 ## execute execute execute ##
-# RUN /bin/bash /testdasi/scripts-install/install-openvpn-the-one-docker-base.sh
+RUN /bin/bash /testdasi/scripts-install/install-openvpn-client-arrio.sh
 
 ## debug mode (comment to disable) ##
-RUN cp /testdasi/scripts-debug/* / && chmod +x /*.sh
-ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
+# RUN cp /testdasi/scripts-debug/* / && chmod +x /*.sh
+# ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
 
 ## Final clean up ##
-# RUN rm -Rf /testdasi
+RUN rm -Rf /testdasi
+ENTRYPOINT ["tini", "--", "/static-ubuntu/scripts-openvpn/entrypoint.sh"]
