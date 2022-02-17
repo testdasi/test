@@ -20,7 +20,7 @@ RUN rm -Rf /testdasi \
     && rm -Rf /testdasi/deprecated
 
 ## execute execute execute ##
-RUN /bin/bash /testdasi/scripts-install/install-openvpn-client-arrio.sh
+RUN /bin/bash /testdasi/scripts-install/install-openvpn-client-rio.sh
 
 ## debug mode (comment to disable) ##
 # RUN cp /testdasi/scripts-debug/* / && chmod +x /*.sh
