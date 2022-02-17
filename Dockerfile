@@ -1,4 +1,4 @@
-ARG FRM='testdasi/openvpn-client-arr-base'
+ARG FRM='testdasi/openvpn-client-rio-base'
 ARG TAG='latest'
 ARG DEBIAN_FRONTEND='noninteractive'
 
