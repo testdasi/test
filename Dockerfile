@@ -5,6 +5,7 @@ ARG DEBIAN_FRONTEND='noninteractive'
 FROM ${FRM}:${TAG}
 ARG FRM
 ARG TAG
+ARG BUILD_OPT
 
 ENV LANG en_GB.UTF-8
 ENV LAUNCHER_GUI_PORT 8000
@@ -58,13 +59,13 @@ RUN rm -Rf /testdasi \
 RUN /bin/bash /testdasi/scripts-install/install-openvpn-client-rio.sh
 
 ## debug mode (comment to disable) ##
-#RUN cp /testdasi/scripts-debug/* / && chmod +x /*.sh
-#ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
+RUN /bin/bash /testdasi/scripts-install/install-debug-mode.sh
+ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
 
 ## Final clean up ##
 RUN rm -Rf /testdasi
 
 ## VEH ##
-VOLUME ["/config"]
-ENTRYPOINT ["tini", "--", "/static-ubuntu/scripts-openvpn/entrypoint.sh"]
-HEALTHCHECK CMD /static-ubuntu/scripts-openvpn/healthcheck.sh
+#VOLUME ["/config"]
+#ENTRYPOINT ["tini", "--", "/static-ubuntu/scripts-openvpn/entrypoint.sh"]
+#HEALTHCHECK CMD /static-ubuntu/scripts-openvpn/healthcheck.sh
