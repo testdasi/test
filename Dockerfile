@@ -19,17 +19,6 @@ RUN rm -Rf /testdasi \
     && mv /temp/static-ubuntu-main /testdasi \
     && rm -Rf /testdasi/deprecated
 
-## execute execute execute ##
-RUN /bin/bash /testdasi/scripts-install/install-openvpn-client-rio.sh
-
 ## debug mode (comment to disable) ##
 RUN /bin/bash /testdasi/scripts-install/install-debug-mode.sh
 ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
-
-## Final clean up ##
-#RUN rm -Rf /testdasi
-
-## VEH ##
-#VOLUME ["/config"]
-#ENTRYPOINT ["tini", "--", "/static-ubuntu/scripts-openvpn/entrypoint.sh"]
-#HEALTHCHECK CMD /static-ubuntu/scripts-openvpn/healthcheck.sh
