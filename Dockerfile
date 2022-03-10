@@ -3,6 +3,10 @@ ARG FRM='ubuntu:focal'
 ARG TAG='latest'
 ARG DEBIAN_FRONTEND='noninteractive'
 
+FROM ${FRM}
+ARG FRM
+ARG TAG
+
 ## build note ##
 RUN echo "$(date "+%d.%m.%Y %T") Built from ${FRM}:${TAG}" >> /build.info
 
