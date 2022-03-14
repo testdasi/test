@@ -1,4 +1,5 @@
-ARG FRM='testdasi/ubuntu-base'
+#ARG FRM='testdasi/ubuntu-base'
+ARG FRM='testdasi/ubuntu-mono'
 ARG TAG='latest'
 ARG DEBIAN_FRONTEND='noninteractive'
 
