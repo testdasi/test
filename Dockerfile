@@ -21,10 +21,11 @@ RUN rm -Rf /testdasi \
     && rm -Rf /testdasi/deprecated
 
 ## execute execute execute ##
-#RUN /bin/bash /testdasi/scripts-install/install-openvpn-client-aio-base.sh
+#RUN /bin/bash /testdasi/scripts-install/install-test.sh
 
 ## debug mode (comment to disable) ##
 RUN /bin/bash /testdasi/scripts-install/install-debug-mode.sh
+RUN /bin/bash /testdasi/scripts-install/install-debug-test.sh
 ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
 
 ## Final clean up ##
