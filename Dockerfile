@@ -1,9 +1,10 @@
-#ARG FRM='testdasi/ubuntu-base'
-ARG FRM='testdasi/ubuntu-mono'
+ARG FRM='testdasi/ubuntu-base'
+#ARG FRM='testdasi/ubuntu-mono'
 ARG TAG='latest'
 ARG DEBIAN_FRONTEND='noninteractive'
 
-FROM ${FRM}:${TAG}
+#FROM ${FRM}:${TAG}
+FROM ${FRM}:s230118
 ARG FRM
 ARG TAG
 ARG TARGETPLATFORM
@@ -26,7 +27,7 @@ RUN rm -Rf /testdasi \
 
 ## debug mode (comment to disable) ##
 RUN /bin/bash /testdasi/scripts-install/install-debug-mode.sh
-RUN /bin/bash /testdasi/scripts-install/install-debug-test.sh
+#RUN /bin/bash /testdasi/scripts-install/install-debug-test.sh
 ENTRYPOINT ["tini", "--", "/entrypoint.sh"]
 
 ## Final clean up ##
